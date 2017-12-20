@@ -8,6 +8,7 @@ import edu.packt.neuralnet.Neuron;
 
 public class Backpropagation extends Training {
 	
+        @Override
 	public NeuralNet train(NeuralNet n) {
 		
 		int epoch = 0;
@@ -45,9 +46,9 @@ public class Backpropagation extends Training {
 		
 	}
 
-	private NeuralNet forward(NeuralNet n, int row) {
+	public NeuralNet forward(NeuralNet n, int row) {
 		
-		ArrayList<HiddenLayer> listOfHiddenLayer = new ArrayList<HiddenLayer>();
+		ArrayList<HiddenLayer> listOfHiddenLayer = new ArrayList<>();
 
 		listOfHiddenLayer = n.getListOfHiddenLayer();
 
@@ -124,7 +125,7 @@ public class Backpropagation extends Training {
 		
 	}
 
-	private NeuralNet backpropagation(NeuralNet n, int row) {
+	public NeuralNet backpropagation(NeuralNet n, int row) {
 
 		ArrayList<Neuron> outputLayer = new ArrayList<Neuron>();
 		outputLayer = n.getOutputLayer().getListOfNeurons();

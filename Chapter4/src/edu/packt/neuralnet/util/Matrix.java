@@ -5,9 +5,6 @@
  */
 package edu.packt.neuralnet.util;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  *
  * @author Administrador
@@ -293,21 +290,20 @@ public class Matrix {
         if(a.getNumberOfRows()!=a.getNumberOfColumns())
             throw new IllegalArgumentException("Only square matrices can have determinant");
 
-        if(a.getNumberOfColumns()==1){
-            return a.getValue(0, 0);
-        }
-        else if(a.getNumberOfColumns()==2){
-            return (a.getValue(0, 0)*a.getValue(1, 1))-(a.getValue(1, 0)*a.getValue(0, 1));
-        }
-        else{
-            Matrix[] LU = a.LUdecomposition();
-            return LU[1].multiplyDiagonal();
-        }        
+        switch (a.getNumberOfColumns()) {
+            case 1:
+                return a.getValue(0, 0);        
 //        for(int k=0;k<a.getNumberOfColumns();k++){
 //            Matrix minorMatrix = a.subMatrix(0, k);
 //            result+= ((k%2==0)? a.getValue(0,k): -a.getValue(0,k)) * minorMatrix.determinant();
 //        }
 //        a.setDeterminant(result);
+            case 2:
+                return (a.getValue(0, 0)*a.getValue(1, 1))-(a.getValue(1, 0)*a.getValue(0, 1));
+            default:
+                Matrix[] LU = a.LUdecomposition();
+                return LU[1].multiplyDiagonal();
+        }
         
     }    
     
